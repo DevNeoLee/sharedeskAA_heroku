@@ -16,7 +16,7 @@
         </li>
     <% else %>
         <li class="nav-item">
-            <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link" %>
+          <%= link_to "Log out", destroy_user_session_path, method: :delete, data: { no_turbolink: true }, class: "nav-link"  %>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="/users/edit">Edit/Profile <span class="sr-only">(current)</span></a>

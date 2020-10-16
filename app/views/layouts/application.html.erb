@@ -13,14 +13,12 @@
     <%# navbar %>
       <%= render 'shared/navbar' %>
     <%# notice %>
-
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-
+ 
+    <%= render 'shared/message'%>
     <%# main %>
     <div class="container">
       <%= yield %>
-      <%= toastr_flash %>
+
     </div>
 
   </body>
