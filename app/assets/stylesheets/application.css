@@ -30,8 +30,9 @@
   height: 128px;
   border-radius: 50%;
 }
-.avatar-full {
-  width: 100%;
+.avatar-largest {
+  width: 225px;
+  height: 225px;
   border-radius: 50%;
 }
 
