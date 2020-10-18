@@ -15,18 +15,24 @@
  *= require toastr
  */
 
-
 .avatar-small {
-  width: 28px;
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
 }
 .avatar-medium {
-  width: 48px;
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
 }
 .avatar-large {
-  width: 68px;
+  width: 128px;
+  height: 128px;
+  border-radius: 50%;
 }
 .avatar-full {
   width: 100%;
+  border-radius: 50%;
 }
 
 /* nav */
