@@ -4,7 +4,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
         # render json: request.env['omniauth.auth'] 
         user = User.from_omniauth(request.env["omniauth.auth"])
         if user.persisted?
-            flash.notice = "Signed in! 감사합니다!! 잘 됐어요"
+            flash.notice = "Welcome! You are successfully logged in! "
             sign_in_and_redirect user
         else
             redirect_to new_user_registration_url
