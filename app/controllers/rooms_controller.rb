@@ -1,6 +1,7 @@
 class RoomsController < ApplicationController
   before_action :set_room, only: [:show, :edit, :update]
   before_action :authenticate_user!, except: [:show]
+  
   def index
     @rooms = current_user.rooms
   end
@@ -17,14 +18,16 @@ class RoomsController < ApplicationController
     @room = current_user.rooms.build(room_params)
     
     if @room.save 
-      redirect_to @room, notice: "Saved..."
+      redirect_to edit_room_path(@room) , notice: "Saved..."
     else
-      render :new 
+      render new_room_path , notice: "hmmmmmm...well well"
     end
   end
 
   def edit
- 
+    unless current_user.id == @room.user.id
+      redirect_to root_path, notice: "You don't have permission."
+    end
   end
 
   def update
@@ -41,6 +44,6 @@ class RoomsController < ApplicationController
     end
 
     def room_params 
-      params.require(:room).permit(:home_type, :room_type, :accomodate, :bed_room, :bath_room, :listing_name, :summary, :address, :is_wifi, :is_kitchen, :is_air, :is_heating, :is_cable, :price, :active)
+      params.require(:room).permit(:home_type, :room_type, :accomodate, :bed_room, :bath_room, :listing_name, :summary, :address, :is_wifi, :is_kitchen, :is_air, :is_heating, :is_cable, :price, :active, images: [])
     end
 end
