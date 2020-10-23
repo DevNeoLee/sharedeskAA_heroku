@@ -5,10 +5,12 @@ Rails.application.routes.draw do
                                     registrations: 'registrations'
                                   }
   
-  root 'pages#home'
+  root 'pages#home' 
   
   get 'pages/home', to: 'pages#home'
-  resources :users, only: [:show]
-  resources :rooms
+
+  resources :users, only: [:show] #프로파일 유저 각각의
+
+  resources :rooms 
   
 end

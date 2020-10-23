@@ -20,3 +20,4 @@ FontAwesome.config.mutateApproach = 'sync'
 
 
 import { config, library, dom } from '@fortawesome/fontawesome-svg-core'
+
