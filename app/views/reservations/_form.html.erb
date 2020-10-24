@@ -1,0 +1,10 @@
+<%= form_with(model: [@room, @room.reservations.new], local: true) do |form| %>
+    <%= form.date_field :start_date %>
+    <%= form.date_field :end_date %>
+    <%= form.hidden_field :room_id, value: @room.id %>
+    <%= form.hidden_field :price, value: @room.price %>
+
+  <div class="actions">
+    <%= form.submit "Book Now", class: "btn btn-primary"%>
+  </div>
+<% end %>

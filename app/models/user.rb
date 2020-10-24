@@ -7,6 +7,7 @@ class User < ApplicationRecord
   validates :name, presence: true, length: { maximum: 35}
 
   has_many :rooms 
+  has_many :reservations
   
   has_one_attached :avatar # 마치 유저의 속한 하나의 파일 처럼 작동
 
