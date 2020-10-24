@@ -132,5 +132,22 @@
                     </div>
             </div>
         </div>
+
+        Near By
+        <div class="row">
+            <% for room in @room.nearbys(10) %>
+                <div class="col-md-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <%= image_tag room.images[0] if room.images.attached?%>
+                        </div>
+                        <div class="panel-body">
+                            <%= link_to room.listing_name, room %><br>
+                            (<%= room.distance.round(2) %> miles away)
+                        </div>
+                    </div>
+                </div>
+            <% end %>
+        </div>
     </div>
 </div>
