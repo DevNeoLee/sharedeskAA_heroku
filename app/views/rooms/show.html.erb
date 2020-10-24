@@ -66,7 +66,9 @@
                 </div>
             </div>
         </div>
-
+        <%# google map %>
+        <%= image_tag "https://maps.googleapis.com/maps/api/staticmap?zoom=15&size=400x300&center=#{@room.latitude},#{@room.longitude}&key=#{Rails.application.credentials.dig(:google, :MAPS_API_KEY)}", alt: "Map" %>
+        
         <%# About %>
         <div class="row">
             <div class="col-md-12">

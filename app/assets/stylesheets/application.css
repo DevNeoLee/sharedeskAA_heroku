@@ -281,3 +281,9 @@ input[type="checkbox"]:checked:before {
 .text-line-through {
   text-decoration: line-through
 }
+
+/* google map */
+.map {
+  width: 100%;
+  min-height: 400px;
+}

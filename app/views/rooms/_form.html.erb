@@ -4,7 +4,7 @@
     </div>
     <div class="panel-body">
         <div class="container">
-            <%= form_with(model: @room, local: true, multi: true) do |f| %>
+            <%= form_with(model: @room, local: true, multi: true, data: { controller: :maps, action: "google-maps-callback@window->maps#initializeMap"}) do |f| %>
                 <div class="row">
                     <div class="col-md-4 select">
                         <div class="form-group">
@@ -55,9 +55,20 @@
                 <div class="row">
                     <div class="form-group">
                         <label>Addrress</label>
-                        <%= f.text_area :address, placeholder: "address", class: "form-control"%>
+                        <%= f.search_field :address, placeholder: "address", class: "form-control", data: { target: "maps.field", action: "keydown->maps#preventSubmit" } %>
                     </div>
                 </div>
+                 <div class="row">
+                <label>Location</label>
+                    <div class="form-group">
+                        <%= f.text_field :latitude, placeholder: "Latitude", class: "form-control", data: { target: "maps.latitude" }%>
+                    </div>
+                    <div class="form-group">
+                        <%= f.text_field :longitude, placeholder: "Longitude", class: "form-control", data: { target: "maps.longitude" }%>
+                    </div>
+                </div>
+                <%= content_tag :div, nil, data: { target: "maps.map" }, class: 'map' %>
+
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
@@ -90,7 +101,7 @@
                         </div>
                     </div>
                 </div>
-                
+ 
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
