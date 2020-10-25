@@ -1,5 +1,13 @@
 <%= form_with(model: [@room, @room.reservations.new], local: true) do |form| %>
     <div class="row">
+        <div class="col-md-12 price_tag">
+            <span>$<%= @room.price %> </span>
+            <span class="pull-right">Per night</span>
+        </div>
+    </div>
+    
+    
+    <div class="row">
         <div class="col-md-6">
             <label>Check In</label>
             <%= form.text_field :start_date, readyonly: 'true', placeholder: "Start Date", class: 'form-control' %>
@@ -14,25 +22,25 @@
     <%= form.hidden_field :price, value: @room.price %>
     <%= form.hidden_field :total, id: 'reservation_total'%>
 
-    <div id="preview" style="display: none">
-        <h4><span id="message"></span></h4>
+    <h4><span id="message"></span></h4>
 
+    <div id="preview" style="display: none">
         <table class="reservation-table">
             <tbody>
                 <tr>
-                    <td>Day(s)</td>
+                    <td>Night(s)</td>
                     <td><span id="reservation_days"></span></td>
                 </tr>
                 <tr>
                     <td>Total</td>
-                    <td><span id="reservation_days"></span></td>
+                    <td>$<span id="reservation_sum"></span></td>
                 </tr>
             </tbody>
         </table>
         <br>
     </div>
     <div class="actions">
-        <%= form.submit "Book Now", class: "btn btn-primary"%>
+        <%= form.submit "Book Now", id: "btn_book", class: "btn btn-primary wide", disabled: 'true'%>
     </div>
 <% end %>
 
@@ -65,6 +73,36 @@ $(function(){
                     onSelect: function(selected) {
                         $('#reservation_end_date').datepicker("option", "minDate", selected);
                         $('#reservation_end_date').attr('disabled', false);
+                        
+                        let start_date = $(this).datepicker('getDate');
+                        let end_date = $('#reservation_end_date').datepicker('getDate');
+                        let nights = (end_date - start_date)/1000/60/60/24 ;
+
+                        let input = {
+                            'start_date': start_date,
+                            'end_date': end_date,
+                            'room_id': <%= @room.id %>
+                        }
+
+                        $.ajax({
+                            url: "/preview",
+                            data: input,
+                            success: function(data) {
+                                if (data.conflict) {
+                                    $('#message').text("This date range is not available.");
+                                    $('#preview').hide();
+                                    $('#btn_book').attr('disabled', true );
+                                } else {
+                                    $('#preview').show();
+                                    $('#btn_book').attr('disabled', false );
+
+                                    let total = days * <%= @room.price %>
+                                    $('#reservation_days').text(nights);
+                                    $('#reservation_sum').text(total);
+                                    $('#reservation_total').val(total);
+                                }
+                            }
+                        }) 
                     }
             });
 
@@ -75,7 +113,37 @@ $(function(){
                     maxDate: '3m',
                     beforeShowDay: unavailable,
                     onSelect: function(selected) {
-                    $('#reservation_start_date').datepicker("option", "maxDate", selected);
+                        $('#reservation_start_date').datepicker("option", "maxDate", selected);
+
+                        let start_date = $('#reservation_start_date').datepicker('getDate');
+                        let end_date = $(this).datepicker('getDate');
+                        let days = (end_date - start_date)/1000/60/60/24 + 1;
+
+                        let input = {
+                            'start_date': start_date,
+                            'end_date': end_date,
+                            'room_id': <%= @room.id %>
+                        }
+
+                        $.ajax({
+                            url: "/preview",
+                            data: input,
+                            success: function(data) {
+                                if (data.conflict) {
+                                    $('#message').text("This date range is not available.");
+                                    $('#preview').hide();
+                                    $('#btn_book').attr('disabled', true );
+                                } else {
+                                    $('#preview').show();
+                                    $('#btn_book').attr('disabled', false );
+
+                                    let total = days * <%= @room.price %>
+                                    $('#reservation_days').text(days);
+                                    $('#reservation_sum').text(total);
+                                    $('#reservation_total').val(total);
+                                }
+                            }
+                        })
                     }
             } );
         }
