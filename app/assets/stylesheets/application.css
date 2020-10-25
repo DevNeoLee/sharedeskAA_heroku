@@ -282,6 +282,12 @@ input[type="checkbox"]:checked:before {
   text-decoration: line-through
 }
 
+.reservation-table td {
+  width: 100%;
+  border: 1px solid #dce0e0;
+  padding: 10px;
+}
+
 /* google map */
 .map {
   width: 100%;

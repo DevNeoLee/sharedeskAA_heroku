@@ -1,10 +1,84 @@
 <%= form_with(model: [@room, @room.reservations.new], local: true) do |form| %>
-    <%= form.date_field :start_date %>
-    <%= form.date_field :end_date %>
+    <div class="row">
+        <div class="col-md-6">
+            <label>Check In</label>
+            <%= form.text_field :start_date, readyonly: 'true', placeholder: "Start Date", class: 'form-control' %>
+        </div>
+         <div class="col-md-6">
+            <label>Check Out</label>
+            <%= form.text_field :end_date, readyonly: 'true', placeholder: "End Date", class: 'form-control', disabled: 'true' %>
+        </div>
+    </div>
+
     <%= form.hidden_field :room_id, value: @room.id %>
     <%= form.hidden_field :price, value: @room.price %>
+    <%= form.hidden_field :total, id: 'reservation_total'%>
 
-  <div class="actions">
-    <%= form.submit "Book Now", class: "btn btn-primary"%>
-  </div>
+    <div id="preview" style="display: none">
+        <h4><span id="message"></span></h4>
+
+        <table class="reservation-table">
+            <tbody>
+                <tr>
+                    <td>Day(s)</td>
+                    <td><span id="reservation_days"></span></td>
+                </tr>
+                <tr>
+                    <td>Total</td>
+                    <td><span id="reservation_days"></span></td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+    </div>
+    <div class="actions">
+        <%= form.submit "Book Now", class: "btn btn-primary"%>
+    </div>
 <% end %>
+
+<script>
+function unavailable(date) {
+    dmy = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
+    return [$.inArray(dmy, unavailableDates) == -1];
+}
+$(function(){
+
+    unavailableDates = [];
+
+    $.ajax({
+        url: '/preload',
+        data: {'room_id': <%= @room.id %>},
+        dataType: 'json',
+        success: function(data) {
+            $.each(data, function(arrId, arrValue){
+                for(let d = new Date(arrValue.start_date); d <= new Date(arrValue.end_date); d.setDate(d.getDate() + 1)) {
+                    unavailableDates.push($.datepicker.formatDate('d-m-yy',d));
+                }
+            })
+
+            $('#reservation_start_date')
+                .datepicker( { 
+                    dateFormat: 'dd-mm-yy',
+                    minDate: 0,
+                    maxDate: '3m',
+                    beforeShowDay: unavailable,
+                    onSelect: function(selected) {
+                        $('#reservation_end_date').datepicker("option", "minDate", selected);
+                        $('#reservation_end_date').attr('disabled', false);
+                    }
+            });
+
+            $('#reservation_end_date')
+                .datepicker( { 
+                    dateFormat: 'dd-mm-yy',
+                    minDate: 0,
+                    maxDate: '3m',
+                    beforeShowDay: unavailable,
+                    onSelect: function(selected) {
+                    $('#reservation_start_date').datepicker("option", "maxDate", selected);
+                    }
+            } );
+        }
+    });
+});
+</script>
