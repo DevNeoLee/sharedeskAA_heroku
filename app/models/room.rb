@@ -3,6 +3,7 @@ class Room < ApplicationRecord
   has_many_attached :images 
   has_many :reservations
   geocoded_by :address
+  has_many :reviews
 
   validates :home_type, presence: true
   validates :room_type, presence: true 
@@ -12,4 +13,8 @@ class Room < ApplicationRecord
   validates :listing_name, presence: true, length: { maximum: 50}
   validates :summary, presence: true, length: { maximum: 500}
   validates :address, presence: true
+
+  def average_rating 
+    reviews.count == 0 ? 0 : reviews.average(:star).round(2)
+  end
 end
