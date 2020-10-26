@@ -21,11 +21,14 @@
         </div>
     </div>
     <script>
+    $(function(){
         $('#stars_<%= r.id %>').raty({
             path: '/assets',
             readOnly: true,
             score: <%= r.star %>
         })
+
+    });
     </script>
     <% end %>   
 <% end %>

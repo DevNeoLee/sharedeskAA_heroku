@@ -16,11 +16,6 @@ Rails.application.routes.draw do
     resources :reservations, only: [:create]
   end
 
-  get '/preload' => 'reservations#preload'
-  get '/preview' => 'reservations#preview'
-  get '/your_trips' => 'reservations#your_trips'
-  get '/yourlisting_reservations' => 'reservations#yourlisting_reservations'
-
   resources :conversations, only: [:index, :create] do  
     resources :messages, only: [:index, :create]
   end
@@ -28,4 +23,11 @@ Rails.application.routes.draw do
   resources :rooms do 
     resources :reviews, only: [:create, :destroy]
   end
+
+  get '/preload' => 'reservations#preload'
+  get '/preview' => 'reservations#preview'
+  get '/your_trips' => 'reservations#your_trips'
+  get '/yourlisting_reservations' => 'reservations#yourlisting_reservations'
+  get '/search' => 'pages#search'
+  
 end

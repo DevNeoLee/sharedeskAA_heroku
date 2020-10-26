@@ -1,0 +1,124 @@
+<div id="wrapper">
+    <div id="sidebar">
+        <div id="widget" class="sticky">
+        <%# google map %>
+            <%= image_tag "https://maps.googleapis.com/maps/api/staticmap?zoom=15&size=400x300&center=#{@room.latitude},#{@room.longitude}&key=#{Rails.application.credentials.dig(:google, :MAPS_API_KEY)}", alt: "Map" %>
+        </div>
+    </div>
+    <div id="article">
+        <div class="row">
+            <%= search_form_with model: @search, url: search_path do |f| %>
+                <div class="row">
+                    <div class="col-md-3">
+                        <%= text_field_tag :start_date, params[:start_date], placeholder: "start date" class: "form-control"%>
+                    </div>
+                    <div class="col-md-3">
+                        <%= text_field_tag :end_date, params[:end_date], placeholder: "start date" class: "form-control"%>
+                    </div>
+                    <div class="col-md-3">
+                        <%= f.text_field :price_gteq, placeholder: "min price" class: "form-control"%>
+                    </div>
+                    <div class="col-md-3">
+                        <%= f.text_field :price_lteq, placeholder: "max price" class: "form-control"%>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-4">
+                        <%= check_box_tag "q[room_type_eq_any][]", "Entire"%> Entire Room
+                    </div>
+                    <div class="col-md-4">
+                        <%= check_box_tag "q[room_type_eq_any][]", "Private"%> Private Room
+                    </div>
+                    <div class="col-md-4">
+                        <%= check_box_tag "q[room_type_eq_any][]", "Shared"%> Shared Room
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Accommodate</label>
+                            <%= f.select :accommodate_gteq, [["1",1], ["2",2], ["3",3], ["4",4], ["5",5], ["6+",6]],
+                                prompt: "Select...", class: "form-control" %>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Bedrooms</label>
+                            <%= f.select :accommodate_gteq, [["1",1], ["2",2], ["3",3], ["4+",4]]  prompt: "Select...", class: "form-control" %>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Bathrooms</label>
+                            <%= f.select :accommodate_gteq, [["1",1], ["2",2], ["3",3], ["4+",4]]]  prompt: "Select...", class: "form-control"%>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-4">
+                        <%= check_box_tag "q[is_cable_eq]", true %> cableTV
+                    </div>
+                    <div class="col-md-4">
+                        <%= check_box_tag "q[is_kitchen_eq]", true %> Kitchen
+                    </div>
+                    <div class="col-md-4">
+                        <%= check_box_tag "q[is_wifi_eq]", true %> Wifi
+                    </div>
+                    <div class="col-md-4">
+                        <%= check_box_tag "q[is_heating_eq]", true %> Heating
+                    </div>
+                    <div class="col-md-4">
+                        <%= check_box_tag "q[is_air_eq]", true %> Air Condition
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <%= f.submit "Search", class: "btn btn-primary"%>
+                </div>
+
+            
+            <% end %>
+            <hr>
+<div class="row">
+    <div class="col-md-4">
+        <% @arrRooms.each do |room| %>
+            
+            <%= link_to room_path(room.id) do %>
+                <%= image_tag room.images[0] if room.images.attached? %>
+                <%= room.listing_name %> 
+            <% end %>
+        <% end %>
+        
+    </div>
+</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function() {
+        $('#start_date').datepicker({
+            dateFormat: 'dd-mm-yy',
+            minDate: 0,
+            maxDate: '3m',
+            onSelect: function(selected) {
+                $('#end_date').datepicker("option", "minDate", selected);
+                $('#end_date').attr('disabled', false);
+            }
+        })
+  
+        $('#end_date').datepicker({
+            dateFormat: 'dd-mm-yy',
+            minDate: 0,
+            maxDate: '3m',
+            onSelect: function(selected) {
+                $('#start_date').datepicker("option", "maxDate", selected);
+         
+            }
+        })
+
+    });
+</script>
