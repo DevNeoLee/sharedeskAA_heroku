@@ -3,12 +3,12 @@ hello world!
     <% if @room.images.attached? %>
     <% @room.images.each do |image| %>
         <div class="col-md-4">
-            <div class="panel panel-default">
-                <div class="panel-heading preview">
+            <div class="card card-body">
+                <div class="card-header preview">
                     <%= image_tag image %>
                 </div>
             </div>
-            <div class="panel-body">
+            <div class="card-body">
                 <span class="pull-right">
                     <i class="fa fa-times fa-lg"></i>
                 </span>

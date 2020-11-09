@@ -21,5 +21,10 @@ const aliasConfig = {
 
 environment.config.set('resolve.alias', aliasConfig);
 
+const config = environment.toWebpackConfig();
+config.resolve.alias = {
+ jquery: 'jquery/src/jquery'
+};
+
 module.exports = environment;
 

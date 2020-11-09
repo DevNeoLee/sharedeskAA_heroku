@@ -1,37 +1,37 @@
-<h1>Rooms#index</h1>
-<p>Find me in app/views/rooms/index.html.erb</p>
-<h3><%= link_to 'Add new room', new_room_path %>
+<div class="card">
+    <h4><%= link_to 'Add new room', new_room_path %></h4>
+</div>
 
 <div class="row">
     <div class="col-md-3">
-        <ul class="sidebar-list">
-            <li class="sidebar-item"><%= link_to "Your Listing", rooms_path, class: "sidebar-link active"%></li>
-            <li class="sidebar-item"><%= link_to "Yourlisting Reservations", yourlisting_reservations_path, class: "sidebar-link"%></li>
-            <li class="sidebar-item"><%= link_to "Your Trips", your_trips_path, class: "sidebar-link"%></li>
+        <ul class="list-group">
+            <li class="list-group-item"><%= link_to "Your Listing", rooms_path, class: "list-group-link active"%></li>
+            <li class="list-group-item"><%= link_to "Yourlisting Reservations", yourlisting_reservations_path, class: "list-group-link"%></li>
+            <li class="list-group-item"><%= link_to "Your Trips", your_trips_path, class: "list-group-link"%></li>
         </ul>
     </div>
-</div>
-<div class="col-md-9">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            Listings
-        </div>
-        <div class="panel-body">
-        
-            <% @rooms.each do |room| %>
-                <div class="row">
-                    <div class="col-md-2">
-                        <%= image_tag room.images[0] if room.images.length > 0 %>
+    <div class="col-md-9">
+        <div class="card card-body">
+            <div class="card card-header">
+                Listings
+            </div>
+            <div class="card-body">
+            
+                <% @rooms.each do |room| %>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <%= image_tag room.images[0] if room.images.length > 0 %>
+                        </div>
+                        <div class="col-md-7">
+                            <h4><%= room.listing_name %></h4>
+                        </div>
+                        <div class="col-md-3 right">
+                            <%= link_to "Update", edit_room_path(room), class: "btn btn-primary" %>
+                            <%= button_to "Delete", room_path(room), method: "delete", data: { confirm: "Are you sure?" }, class: "btn btn-primary" %>
+                        </div>
                     </div>
-                    <div class="col-md-7">
-                        <h4><%= room.listing_name %></h4>
-                    </div>
-                    <div class="col-md-3 right">
-                        <%= link_to "Update", edit_room_path(room), class: "btn btn-primary" %>
-                        <%= button_to "Delete", room_path(room), method: "delete", data: { confirm: "Are you sure?" }, class: "btn btn-primary" %>
-                    </div>
-                </div>
-            <% end %>
+                <% end %>
+            </div>
         </div>
     </div>
 </div>

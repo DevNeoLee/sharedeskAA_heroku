@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4 sticky-top">
   <a class="navbar-brand" href="/pages/home">Share Desk</a>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -15,21 +15,26 @@
             <a class="nav-link" href="/users/signup" tabindex="-1" aria-disabled="true">Sign up</a>
         </li>
     <% else %>
-            <li class="sidebar-item"><%= link_to "Your Listing", rooms_path, class: "sidebar-link"%></li>
-
-            <li class="sidebar-item"><%= link_to "Yourlisting Reservations", yourlisting_reservations_path, class: "sidebar-link "%></li>
-
-            <li class="sidebar-item"><%= link_to "Your Trips", your_trips_path, class: "sidebar-link"%></li>
+            
 
         <li class="nav-item">
           <%= link_to "Log out", destroy_user_session_path, method: :delete, data: { no_turbolink: true }, class: "nav-link"  %>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/users/edit">Edit/Profile <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="/users/edit">Edit Setting <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/users/<%= current_user.id %>" tabindex="-1" aria-disabled="true"><%=image_tag current_user.default_avatar, class: "img-circle avatar-small" %> | <%=current_user.name %> | <%=current_user.email %></a>
+            <a class="nav-link" href="/users/<%= current_user.id %>">Profile <span class="sr-only">(current)</span><%=image_tag current_user.default_avatar, class: "img-circle avatar-small" %></a>
         </li>
+        <div class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" data-toggle="dropdown"  tabindex="-1" aria-disabled="true"> | <%=current_user.name %> | <%=current_user.email %></a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <%= link_to "Your Listing", rooms_path, class: "dropdown-item"%>
+              <%= link_to "Yourlisting Reservations", yourlisting_reservations_path, class: "dropdown-item"%>
+              <div class="dropdown-divider"></div>
+              <%= link_to "Your Trips", your_trips_path, class: "dropdown-item"%>
+            </div>
+        </div>
         
     <% end %>
       </ul>

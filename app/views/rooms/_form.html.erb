@@ -1,8 +1,8 @@
-<div class="pannel panel-default">
-    <div class="panel-heading">
+<div class="card card-body">
+    <div class="card-header">
         Create your beautiful place
     </div>
-    <div class="panel-body">
+    <div class="card-body">
         <div class="container">
             <%= form_with(model: @room, local: true, multi: true, data: { controller: :maps, action: "google-maps-callback@window->maps#initializeMap"}) do |f| %>
                 <div class="row">

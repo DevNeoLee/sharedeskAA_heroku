@@ -1,12 +1,8 @@
-<h1>Rooms#show</h1>
-<p>Find me in app/views/rooms/show.html.erb</p>
 
 <h3><%= link_to 'Add new room', new_room_path %>
 
-<div id="photos"> <%= render 'shared/images'  %> </div>
-
-<div class="panel panel-default">
-    <div class="panel-body">
+<div class="card card-body">
+    <div class="card-body">
         <div class="row">
             <div class="col-md-12">
                 <% if @room.images.attached? %>
@@ -115,7 +111,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-10 col-md-offset-1">
+            <div class="col-md-12 col-md-offset-1">
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                     
                      <% if @room.images.attached? %>
@@ -130,7 +126,10 @@
                         <% if @room.images.attached? %>
                             <% @room.images.each_with_index do |image, i| %>
                                 <div class="carousel-item <%='active' if i == 0%>">
-                                    <%= image_tag image %>
+                                    <%= image_tag image, class: "image_carousel"%>
+                                    <div class="carousel-caption">
+                                        <h class="display-3"> Explore New Space </h2>
+                                    </div>
                                 </div>
                             <% end %>
                         <% end %>
@@ -152,11 +151,11 @@
         <div class="row">
             <% for room in @room.nearbys(10) %>
                 <div class="col-md-4">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
+                    <div class="card card-body">
+                        <div class="card-heading">
                             <%= image_tag room.images[0] if room.images.attached?%>
                         </div>
-                        <div class="panel-body">
+                        <div class="card-body">
                             <%= link_to room.listing_name, room %><br>
                             (<%= room.distance.round(2) %> miles away)
                         </div>

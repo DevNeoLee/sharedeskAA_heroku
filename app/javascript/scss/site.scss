@@ -1,22 +1,10 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *= require bootstrap
- *= require_tree .
- *= require_self
- *= require toastr
- *= require @fortawesome/fontawesome-free
- */
 
- /* avatar photo */
+@import "pages";
+@import "~bootstrap/scss/bootstrap.scss";
+
+ /* google font */
+@import url('https://fonts.googleapis.com/css2?family=Hind+Madurai:wght@300&display=swap');
+
 .avatar-small {
   height: 32px;
   width: 32px;
@@ -38,9 +26,16 @@
   border-radius: 50%;
 }
 
+.image_carousel {
+  width: 900px;
+}
+
 /* nav */
 body {
   min-height: 75rem;
+}
+.nav-height {
+  height: 100px;
 }
 
 .bd-placeholder-img {
@@ -78,6 +73,8 @@ body {
 html,
 body {
   height: 100%;
+  font-family: 'Hind Madurai', sans-serif;
+  color: #333;
 }
 
 body {
@@ -265,11 +262,11 @@ input[type="checkbox"]:checked:before {
   display: block;
 }
 
-.panel-heading.preview {
+.card-header.preview {
   padding: 0;
 }
 
-.panel-heading.preview img {
+.card-header.preview img {
   width: 100%;
 }
 
@@ -331,8 +328,18 @@ input[type="checkbox"]:checked:before {
   width: 560px;
 }
 
+.discovery-card {
+
+}
+
+.va-container {
+
+}
+
+
 /* google map */
 .map {
   width: 100%;
   min-height: 400px;
 }
+

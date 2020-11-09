@@ -2,9 +2,9 @@
     <div class="col-md-3">
         <div class="center">
             <%= image_tag @user.default_avatar, class: "avatar-largest" %></div>
-        <div class="panel panel-default">
-            <div class="panel-heading">Verification</div>
-            <div class="panel-body">
+        <div class="card card-body">
+            <div class="card-header">Verification</div>
+            <div class="card-body">
                 Email Address<br>
                 Phone Number
             </div>
@@ -23,14 +23,14 @@
         <div class="row">
             <% @rooms.each do |room| %>
                 <div class="col-md-4">
-                    <div class="panel panel-default">
-                        <div class="panel-heading preview">
+                    <div class="card card-body">
+                        <div class="card-header preview">
                             <%= image_tag room.images[0] if room.images.attached? %>
                         </div>
-                        <div class="panel-heading preview">
+                        <div class="card-header preview">
                             <%= room.listing_name %>
                         </div>
-                        <div class="panel-heading preview">
+                        <div class="card-header preview">
                             <%= room.address %>
                         </div>
                     </div>
