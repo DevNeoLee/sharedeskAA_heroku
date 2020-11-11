@@ -1,10 +1,28 @@
 
 @import "pages";
 @import "~bootstrap/scss/bootstrap.scss";
+@import "toastr";
 
  /* google font */
 @import url('https://fonts.googleapis.com/css2?family=Hind+Madurai:wght@300&display=swap');
 
+a {
+  color: rgba(10, 1, 1, 0.979);
+  text-decoration: none;
+}
+
+a:hover {
+  color: rgba(255, 115, 0, 0.986);
+  text-decoration: none;
+}
+
+img:hover {
+    transform: scale(1.2);
+}
+
+.image-small {
+  width: 250px;
+}
 .avatar-small {
   height: 32px;
   width: 32px;
@@ -32,7 +50,7 @@
 
 /* nav */
 body {
-  min-height: 75rem;
+  min-height: 65rem;
 }
 .nav-height {
   height: 100px;
