@@ -1,31 +1,101 @@
 
-<div class="position-relative text-center bg-light shadow">
-  <div class="">
-    <div class="text-center m-3">
-        <h4>Have your desk any city!</h4>
-    </div>
-    <div class="row">
-        <% @rooms.each do |room|%>
-            <div class=" card shadow">
-                <div class="card-header">
-                    <% if room.images.attached? %>
-                        <%= image_tag room.images[0], class: "image-small"%>
-                    <% end %>
-                </div>
-                <div class="card-body">
-                    <%= room.listing_name %>
-                    <%= room.address %>
-                </div>
-            </div>
-        <% end %> 
-    </div>
-    <%# <h1 class="display-4 font-weight-normal">Punny headline</h1>
-    <p class="lead font-weight-normal">And an even wittier subheading to boot. Jumpstart your marketing efforts with this example based on Apple’s marketing pages.</p>
-    <a class="btn btn-outline-secondary" href="#">Coming soon</a> %>
-  </div>
+<div class="jumbotron shadow">
+  <h1 class="display-4">Need quick work station this morning?</h1>
+  <p class="lead">Find your work desk instantly.</p>
+  <hr class="my-4">
+  <%= image_pack_tag "main_image2.jpg", width: "520px" %>
+  <%= image_pack_tag "main_image1.jpg", width: "520px" %>
+  <p>Want to find what are available for your work productivity and efficiency?</p>
+  <p class="lead">
+    <a class="btn btn-primary btn-lg" href="#" role="button">Find Locally!</a>
+  </p>
 </div>
 
-<div class="container-fluid pb-2">
+<%# <figure>
+    <div class="fixed-wrap p-5" style="height: 1000px" >
+        <div id="fixed"></div>
+    </div>
+</figure> %>
+<div class="d-flex">
+    <div class="col-3">
+        <div class="card animated jackInTheBox">
+            <%=image_pack_tag "main_image1.jpg", class: "img-fluid"%>
+            <div class="card-body">
+                <div class="card-title">Yushin, Nov 11 2020</div>
+                <div class="text">hello Charles I am good here. Enjoy your life.</div>
+                <button class="btn btn-primary btn-sm mt-2">go</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="card m-2" style="width: 200px">
+        <%=image_pack_tag "main_image1.jpg", class: "img-fluid"%>
+        <div class="card-body">
+            <div class="card-title">Yushin, Nov 11 2020</div>
+            <div class="text">hello Charles I am good here. Enjoy your life.</div>
+            <button class="btn btn-primary btn-sm mt-2">go</button>
+        </div>
+    </div>
+    <div class="card m-2" style="width: 200px">
+        <%=image_pack_tag "main_image1.jpg", class: "img-fluid"%>
+        <div class="card-body">
+            <div class="card-title">Yushin, Nov 11 2020</div>
+            <div class="text">hello Charles I am good here. Enjoy your life.</div>
+            <button class="btn btn-primary btn-sm mt-2">go</button>
+        </div>
+    </div>
+    <div class="card m-2" style="width: 200px">
+        <%=image_pack_tag "main_image1.jpg", class: "img-fluid"%>
+        <div class="card-body">
+            <div class="card-title">Yushin, Nov 11 2020</div>
+            <div class="text">hello Charles I am good here. Enjoy your life.</div>
+            <button class="btn btn-primary btn-sm mt-2">go</button>
+        </div>
+    </div>
+</div>
+
+<div class="m-2">
+    <div class="card m-2 " style="width: 500px">
+        <div class="row">
+            <div class="col-md-4">
+                <%=image_pack_tag "main_image1.jpg", class: "img-fluid" %>
+            </div>
+            <div class="col-md-8">
+                <div class="body">
+                    <div class="title h3 mt-2">yushin</div>
+                    <div class="text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatibus voluptas, iure id aspernatur velit est at quaerat ex facilis incidunt doloremque voluptatum itaque, ad eos iusto aliquid iste vel libero.</div>
+                    <button class="btn btn-small btn-primary m-2">gogo</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row p-5">
+<div class="text-center m-3 h3">
+    <p>Have your desk any city!</p>
+</div>
+<div class="row">
+    <% @rooms.each do |room|%>
+        <div class=" card shadow">
+            <div class="card-header">
+                <% if room.images.attached? %>
+                    <%= image_tag room.images[0], class: "image-small"%>
+                <% end %>
+            </div>
+            <div class="card-body">
+                <%= room.listing_name %>
+                <%= room.address %>
+            </div>
+        </div>
+    <% end %> 
+</div>
+<%# <h1 class="display-4 font-weight-normal">Punny headline</h1>
+<p class="lead font-weight-normal">And an even wittier subheading to boot. Jumpstart your marketing efforts with this example based on Apple’s marketing pages.</p>
+<a class="btn btn-outline-secondary" href="#">Coming soon</a> %>
+</div>
+
+
+<div class="container-fluid pb-5">
     <%= form_with url: search_path, method: :get do %>
         <div class="row">
             <div class="col-md-6">
@@ -93,11 +163,6 @@
     </div>
 </div>
 
-<figure>
-    <div class="fixed-wrap" style="width: 500px; height: 500px">
-        <div id="fixed"></div>
-    </div>
-</figure>
 
 <script>
     $(function() {

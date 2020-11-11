@@ -1,11 +1,18 @@
-
-  <div class="card  mx-auto col-lg-6 shadow">
+<div class="row">
+  <div class="card  mx-auto shadow">
     <div class="card-body">
       <div class="card-title">
-        <h2 class=" text-center mt-4 mb-3">Log in</h1>   
+        <h2 class=" text-center mt-4 mb-3">Welcome</h1>   
       </div>
       <hr>
       <%= form_for(resource, as: resource_name, url: session_path(resource_name), class: "form-signin2") do |f| %>
+       <div class="m-2 border-none">
+              <div class=" d-flex">
+                <div class="pt-3 mt-1 font-weight-bold">Wherever you go</div>
+                <%= image_pack_tag "orangePolygonLarge.png", width: "100"%>  
+                <div class="pt-4 mt-4 font-weight-bold">Have your desk instantly!</div>
+          </div>
+        </div>
         <%= render 'shared/devisemes' %>
         <div class="form-label-group m-2">
           <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "please do something", id: "inputEmail"%>
@@ -41,4 +48,5 @@
     </div>
     </div>
   </div>
+</div>
 

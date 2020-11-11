@@ -17,4 +17,14 @@ class Room < ApplicationRecord
   def average_rating 
     reviews.count == 0 ? 0 : reviews.average(:star).round(2)
   end
+
+
+  def default_room
+    if avatar.attached?
+      avatar
+    else 
+      'default_avatar.png'
+    end
+  end
+
 end
