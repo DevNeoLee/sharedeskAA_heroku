@@ -1,6 +1,7 @@
 class PagesController < ApplicationController
   def home
     @rooms = Room.all
+    @reviews = Review.all
   end
 
   def search 
