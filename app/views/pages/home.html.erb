@@ -18,12 +18,14 @@
 </figure> %>
 <div class="d-flex">
     <div class="col-3">
-        <div class="card animated jackInTheBox">
+        <div class="card animate__animated animate__bounce">
+        <div class="header p-2">hello header<i class="fal fa-cat-space"></i></div>
             <%=image_pack_tag "main_image1.jpg", class: "img-fluid"%>
-            <div class="card-body">
+            
+            <div class="card-body bg-primary">
                 <div class="card-title">Yushin, Nov 11 2020</div>
                 <div class="text">hello Charles I am good here. Enjoy your life.</div>
-                <button class="btn btn-primary btn-sm mt-2">go</button>
+                <button class="btn btn-danger btn-sm mt-2">go</button>
             </div>
         </div>
     </div>
@@ -162,8 +164,24 @@
         
     </div>
 </div>
+<i class="fal fa-cat-space"></i>
 
+<% if !user_signed_in? %>
+  <footer>
+        <div class="container">
+          <div class="jumbotron", height: "5000px">
+            <ul>
+              <li>1</li>
+              <li>2</li>
+              <li>3</li>
+              <li>4</li>
 
+            </ul>
+          </div>
+        </div>
+      </footer>
+<% end %>
+      
 <script>
     $(function() {
         $('#start_date').datepicker({

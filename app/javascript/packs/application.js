@@ -12,6 +12,7 @@ require('popper.js')
 require('bootstrap')
 global.toastr = require("toastr")
 // require("jquery-ui")
+require('animate.css')
 
 // import '@fortawesome/fontawesome-svg-core';
 // Uncomment to copy all static images under ../images to the output folder and reference
