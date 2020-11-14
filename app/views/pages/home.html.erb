@@ -229,13 +229,12 @@
             }
         })
   
-        $('end_date').datepicker({
+        $('#end_date').datepicker({
             dateFormat: 'dd-mm-yy',
             minDate: 0,
             maxDate: '3m',
             onSelect: function(selected) {
                 $('#end_date').datepicker("option", "maxDate", selected);
-         
             }
         })
 

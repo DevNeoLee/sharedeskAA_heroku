@@ -15,7 +15,7 @@ environment.plugins.prepend(
 );
 
 const aliasConfig = {
-    'jquery': 'jquery-ui-dist/external/jquery/jquery.js',
+    jquery: 'jquery-ui-dist/external/jquery/jquery.js',
     'jquery-ui': 'jquery-ui-dist/jquery-ui.js'
 };
 
@@ -23,7 +23,8 @@ environment.config.set('resolve.alias', aliasConfig);
 
 const config = environment.toWebpackConfig();
 config.resolve.alias = {
- jquery: 'jquery/src/jquery'
+ jquery: 'jquery/src/jquery',
+ 'jquery-ui': 'jquery-ui-dist/jquery-ui.js' 
 };
 
 module.exports = environment;
