@@ -18,6 +18,17 @@ class Room < ApplicationRecord
     reviews.count == 0 ? 0 : reviews.average(:star).round(2)
   end
 
+  def small_image(image)
+    image.variant(resize_to_fill: [200, 200]) 
+  end
+
+  def medium_image(image)
+    image.variant(resize_to_fill: [300, 300], quality: 2000) 
+  end
+
+  def large_image(image)
+    image.variant(resize_to_fill: [400, 400]) 
+  end
 
   def default_room
     if avatar.attached?
