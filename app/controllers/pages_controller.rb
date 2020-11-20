@@ -1,6 +1,7 @@
 class PagesController < ApplicationController
   def home
-    @rooms = Room.all
+    @pagy, @rooms = pagy(Room.all, items: 2)
+    # @rooms = Room.all
     @reviews = Review.all
   end
 

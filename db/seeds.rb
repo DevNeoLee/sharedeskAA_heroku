@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-@room = Room.new
+
+
+    # Room.create(home_type: "house", room_type: "good_room", accomodate: "yes", bed_room: 1, bath_room: 2, listing_name: "good", summary: "yeah I told you it's a good room", address: "canada")
 
 
