@@ -38,10 +38,14 @@
         
     <% end %>
     </ul>
-    <form class="form-inline mt-2 mt-md-2 ">
-      <input class="form-control input-lg mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
-    </form>
+    <div class= "form-inline mt-2 mt-md-2 ">
+      <%= search_form_for @browse, url: pages_home_path, method: :get do |f|%>
+        <%=f.search_field :address_cont, class: "form-control input-lg mr-sm-2", placeholder: "Search" %>
+        <%= f.submit "submit"%>
+      <% end %>
+    
+    </div>
+    
   </div>
   
 </nav>

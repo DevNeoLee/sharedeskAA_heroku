@@ -11,22 +11,22 @@ class PagesController < ApplicationController
 
     arrResult = Array.new 
 
-    if sessison[:loc_search] && session[:loc_search] != ""
+    if session[:loc_search] && session[:loc_search] != ""
       @rooms_address = Room.where(active: true).near(session[:loc_search], 5, order: 'distance')
     else
       @rooms_address = Room.where(active: true).all
     end
 
-    @search = @room_address.ransack(params[:q])
-    @rooms = @search.result 
+    @search = @rooms_address.ransack(params[:q])
+    @rooms = @search.result
 
-    @arrRooms = @room.to_a
+    @arrRooms = @rooms.to_a
 
     if (params[:start_date] && params[:end_date] && !params[:start_date].empty? && !params[:end_date].empty? )
   
-      start_date = Date.parse(params[:start_date])
-      end_date = Date.parse(params[:end_date])
-
+      start_date = Date.parse(params[:start_date][0])
+      end_date = Date.parse(params[:end_date][0])
+      debugger
       @rooms.each do |room|
         not_available = room.reservations.where(
           "(? <= start_date AND start_date <= ?)
@@ -35,13 +35,14 @@ class PagesController < ApplicationController
           start_date, end_date,
           start_date, end_date,
           start_date, end_date
-        
         ).limit(1)
 
         if not_available.length > 0 
           @arrRooms.delete(room)
         end
       end
+
     end
+
   end
 end
