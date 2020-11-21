@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-
-    # Room.create(home_type: "house", room_type: "good_room", accomodate: "yes", bed_room: 1, bath_room: 2, listing_name: "good", summary: "yeah I told you it's a good room", address: "canada")
-
+25.times do
+    Room.create(user_id: 1, home_type: "house", room_type: "good_room", accomodate: "yes", bed_room: 1, bath_room: 2, listing_name: "good", summary: "yeah I told you it's a good room", address: "canada")
+end
 

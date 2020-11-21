@@ -1,8 +1,17 @@
 class PagesController < ApplicationController
   def home
-    @pagy, @rooms = pagy(Room.all, items: 2)
+    @pagy, @rooms = pagy(Room.all, items: 3)
     # @rooms = Room.all
     @reviews = Review.all
+
+    respond_to do |format|
+      format.html
+      format.json {
+        render json: {
+          entries: render_to_string(partial: @rooms, formats: [:html]), pagination: view_context.pagy_nav(@pagy)
+        }
+      }
+    end
   end
 
   def search 
