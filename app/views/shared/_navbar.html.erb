@@ -6,7 +6,7 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarCollapse">
-    <ul class="navbar-nav mr-auto">
+    <ul class="navbar-nav mr-2">
      <% if !user_signed_in? %>
         <li class="nav-item">
             <a class="nav-link" href="/users/login">Log in</a>
@@ -38,16 +38,22 @@
         
     <% end %>
     </ul>
-    <div class= "form-inline mt-2 mt-md-2 ">
-      <%= search_form_for @browse, url: pages_home_path, method: :get do |f|%>
-        <%=f.search_field :address_cont, class: "form-control input-lg mr-sm-2", placeholder: "Search" %>
-        <%= f.submit "submit"%>
-      <% end %>
-    
-    </div>
-    
+    <div class= "col-md-8 mt-2 mt-2">
+      <%= search_form_for @browse, url: search_path, method: :get do |f|%>
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-7 p-0">
+                  <%=f.search_field :address_cont, class: "form-control input-lg m-0 ", placeholder: "Where are you going to? Try Vancouver, Barcelona, Tokyo..." %>
+                </div>
+                <div class="col-md-1 bg-primary">
+                  <%= f.submit "submit", class: "btn btn-primary m-0 pl-0"%>
+                </div>
+            </div>
+          </div>      
+        <% end %>
+      </div>
+    </div> 
   </div>
-  
 </nav>
 
 

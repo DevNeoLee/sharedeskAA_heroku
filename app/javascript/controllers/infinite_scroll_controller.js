@@ -27,8 +27,8 @@ export default class extends Controller {
             success: (data) => {
          
                 this.entriesTarget.insertAdjacentHTML('beforeend', data.entries)
-                this.paginationTarget.innerHTML = data.pagination
-                console.log(data.pagination)
+                this.paginationTarget.innerHTML = "<%== pagy_bootstrap_nav(@pagy).html_safe %>"
+               
             }
         })
     }
