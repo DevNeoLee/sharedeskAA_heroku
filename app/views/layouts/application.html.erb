@@ -17,19 +17,17 @@
 
   <body>
     <%# navbar %>
-      <%= render 'shared/navbar' %>
-    <%# notice %>
- 
-    <%= render 'shared/message'%>
+    <%= render 'shared/navbar' %>      
+  
     <%# main %>
-    <div class="container">
+    <%= render 'shared/message'%>
+    <div class="container main">
       <%= yield %>
     </div>
 
     <% if user_signed_in? %>
       <footer>
-        <div class="container">
-          <div class="jumbotron", height: "5000px">
+ 
             <ul>
               <li>1</li>
               <li>2</li>
@@ -37,8 +35,7 @@
               <li>4</li>
 
             </ul>
-          </div>
-        </div>
+    
       </footer>
     <% end %>
   </body>

@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 
     def set_global_search_variable
         @browse = Room.all.ransack(params[:q])
-        @browse_result = @browse.result(distinct: true)
+        @pagy, @browse_result = pagy(@browse.result(distinct: true), items: 3)
     end
 
     protected 
