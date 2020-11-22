@@ -1,12 +1,3 @@
-<div data-controller="infinite-scroll" data-action="scroll@window->infinite-scroll#scroll">
-    <div data-target="infinite-scroll.entries">
-        <%= render @rooms %>
-    </div>
-    <div data-target="infinite-scroll.pagination">
-        <%== pagy_bootstrap_nav(@pagy).html_safe %>
-    </div>
-</div>
-    
 
 <div class="jumbotron shadow">
   <h1 class="display-4">Need quick work station this morning?</h1>
@@ -29,68 +20,9 @@
   </p>
 </div>
 
-<div class="jumbotron shadow col-md-12 d-flex align-items-stretch">
-    <div class="col-md-8">
-        <div class="col-md-4">
-            <div class="card animate__animated animate__bounce">
-            <div class="header p-2">hello header<i class="fal fa-cat-space"></i></div>
-                <%=image_pack_tag "main_image1.jpg", class: "img-fluid"%>
-                
-                <div class="card-body bg-primary">
-                    <div class="card-title">Yushin, Nov 11 2020</div>
-                    <div class="text">hello Charles I am good here. Enjoy your life.</div>
-                    <button class="btn btn-danger btn-sm mt-2">go</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="card m-3" >
-            <%=image_pack_tag "main_image1.jpg", class: "img-fluid"%>
-            <div class="card-body">
-                <div class="card-title">Yushin, Nov 11 2020</div>
-                <div class="text">hello Charles I am good here. Enjoy your life.</div>
-                <button class="btn btn-outline-primary btn-sm mt-2">go</button>
-            </div>
-        </div>
-        <div class="card m-3" >
-            <%=image_pack_tag "main_image1.jpg", class: "img-fluid"%>
-            <div class="card-body">
-                <div class="card-title">Yushin, Nov 11 2020</div>
-                <div class="text">hello Charles I am good here. Enjoy your life.</div>
-                <button class="btn btn-primary btn-sm mt-2">go</button>
-            </div>
-        </div>
-        <div class="card m-2" >
-            <%=image_pack_tag "main_image1.jpg", class: "img-fluid"%>
-            <div class="card-body">
-                <div class="card-title">Yushin, Nov 11 2020</div>
-                <div class="text">hello Charles I am good here. Enjoy your life.</div>
-                <button class="btn btn-primary btn-sm mt-2">go</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-8 m-2">
-        <div class="card m-2 ">
-            <div class="row">
-                <div class="col-md-4">
-                    <%=image_pack_tag "main_image1.jpg", class: "img-fluid" %>
-                </div>
-                <div class="col-md-8">
-                    <div class="body">
-                        <div class="title h3 mt-2">yushin</div>
-                        <div class="text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatibus voluptas, iure id aspernatur velit est at quaerat ex facilis incidunt doloremque voluptatum itaque, ad eos iusto aliquid iste vel libero.</div>
-                        <button class="btn btn-small btn-primary m-2">gogo</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
 <div class="jumbotron shadow col-md-12">
     <div class="text-center mb-5 h3">
-        <h3>Have your desk any city!</h3>
+        <h3>Have your desk at any city!</h3>
     </div>
     <div class="row">    
         <% @rooms.each do |room|%>
@@ -117,19 +49,19 @@
 </div>
 
 <div class="container-fluid mb-3 border p-4 shadow">
-    <%= form_with url: search_path, method: :get do %>
+    <%= search_form_for @search, url: search_path, method: :get do |f| %>
         <div class="row">
+            <div class="col-md-2">
+                <%= f.submit %>
+            </div>
             <div class="col-md-6">
-                <%= text_field_tag :search, params[:search], placeholder: "where are you going?", class: "form-control"%>
+                <%= f.search_field :address_cont, placeholder: "where are you going?", class: "form-control"%>
             </div>
             <div class="col-md-2">
-                <%= text_field_tag :start_date, params[:start_date], placeholder: "start date", class:"form-control"%>
+                <%= text_field_tag :start_date, placeholder: "start date", class:"form-control", id: "start_date"%>
             </div>
             <div class="col-md-2">
-                <%= text_field_tag :end_date, params[:end_date], placeholder: "end date", class:"form-control"%>
-            </div>
-            <div class="col-md-2">
-                <%= submit_tag :search, class:"btn btn-primary" %>
+                <%= text_field_tag :end_date, placeholder: "end date", class:"form-control", id: "end_date"%>
             </div>
         </div>
     <% end %>
@@ -208,8 +140,7 @@
 
 <% if !user_signed_in? %>
   <footer>
-        <div class="container">
-          <div class="jumbotron shdow", height: "5000px">
+
             <ul>
               <li>contact</li>
               <li>about us</li>
@@ -217,8 +148,8 @@
               <li>4</li>
 
             </ul>
-          </div>
-        </div>
+   
+
       </footer>
 <% end %>
       
@@ -242,6 +173,5 @@
                 $('#start_date').datepicker("option", "maxDate", select);
             }
         })
-
     });
 </script>
