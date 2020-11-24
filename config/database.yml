@@ -23,5 +23,4 @@ test:
 production:
   <<: *default
   database: sharedeskaa_heroku_production
-  username: justinklee215@gmail.com
-  password: <%= ENV['SHAREDESKAA_DATABASE_PASSWORD'] %>
+  
