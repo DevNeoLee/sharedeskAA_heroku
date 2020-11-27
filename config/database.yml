@@ -24,8 +24,12 @@ production:
   <<: *default
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   database: sharedeskaa_heroku_production
   
+=======
+  database: db/production.sqlite3
+>>>>>>> parent of 761b905... switch to Postgresql from sql for heroku
 =======
   database: db/production.sqlite3
 >>>>>>> parent of 761b905... switch to Postgresql from sql for heroku
