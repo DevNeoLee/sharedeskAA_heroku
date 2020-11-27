@@ -26,6 +26,7 @@ production:
 <<<<<<< HEAD
 <<<<<<< HEAD
   database: sharedeskaa_heroku_production
+<<<<<<< HEAD
   
 =======
   database: db/production.sqlite3
@@ -36,3 +37,7 @@ production:
 =======
   database: db/production.sqlite3
 >>>>>>> parent of 761b905... switch to Postgresql from sql for heroku
+=======
+  username: justinklee215@gmail.com
+  password: <%= ENV['SHAREDESKAA_DATABASE_PASSWORD'] %>
+>>>>>>> parent of e9e8875... fix bugs on message_controller and config database setting
